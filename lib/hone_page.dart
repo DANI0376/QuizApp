@@ -64,7 +64,7 @@ class Home_Page extends StatelessWidget {
             padding: const EdgeInsets.only(left: 40, top: 40),
             child: Container(
               child: Text(
-                'what is thabu',
+                'which of the following\ntechnology used by zomato for\nfood delivery ?',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),

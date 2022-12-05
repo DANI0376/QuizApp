@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:full_function_game/containers.dart';
+import 'package:full_function_game/datas.dart';
 import 'package:full_function_game/splash_screen.dart';
 
 class Questions extends StatelessWidget {
@@ -64,7 +65,7 @@ class Questions extends StatelessWidget {
             padding: const EdgeInsets.only(left: 40, top: 40),
             child: Container(
               child: Text(
-                'Which of the following\ntechnology used by zomato for\nfood delivery ??',
+                datas['questions']["question"],
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),

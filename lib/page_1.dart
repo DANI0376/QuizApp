@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:full_function_game/containers.dart';
-import 'package:full_function_game/datas.dart';
 import 'package:full_function_game/splash_screen.dart';
 
 class Questions extends StatelessWidget {
@@ -65,7 +64,7 @@ class Questions extends StatelessWidget {
             padding: const EdgeInsets.only(left: 40, top: 40),
             child: Container(
               child: Text(
-                datas['questions']["question"],
+                'what is thabu',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),

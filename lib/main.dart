@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:full_function_game/page_1.dart';
+import 'package:full_function_game/hone_page.dart';
 import 'package:full_function_game/splash_screen.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Questions(),
+      home: Home_Page(),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:full_function_game/answercheck.dart';
 import 'package:full_function_game/q&a.dart';
 import 'package:full_function_game/result_page.dart';
 
+
 late bool match;
 int mark = 0;
 
@@ -200,7 +201,7 @@ class _Home_PageState extends State<Home_Page> {
                           pageindex < 10
                               ? pageindex++
                               : Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Result_page()));
+                                  builder: (context) => Result_page(mark)));
                           match = false;
                           print('match=$mark');
                         });

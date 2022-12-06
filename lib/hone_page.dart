@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:full_function_game/Options.dart';
-import 'package:full_function_game/splash_screen.dart';
+import 'package:full_function_game/q&a.dart';
+import 'package:full_function_game/result_page.dart';
 
-class Home_Page extends StatelessWidget {
-  const Home_Page({super.key});
+class Home_Page extends StatefulWidget {
+  Home_Page({super.key});
 
+  @override
+  State<Home_Page> createState() => _Home_PageState();
+}
+
+class _Home_PageState extends State<Home_Page> {
+  final List<String> Options = <String>['A.', 'B.', 'C.', 'D.'];
+
+  final List<String> Options_1 = <String>[
+    'Drone',
+    '3D Printer',
+    'VR Box',
+    'Amazon Alexa'
+  ];
+  int pageindex = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +67,7 @@ class Home_Page extends StatelessWidget {
                   ),
                   child: Center(
                       child: Text(
-                    '1/10',
+                    '$pageindex/10',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   )),
                 ),
@@ -64,7 +78,8 @@ class Home_Page extends StatelessWidget {
             padding: const EdgeInsets.only(left: 40, top: 40),
             child: Container(
               child: Text(
-                'which of the following\ntechnology used by zomato for\nfood delivery ?',
+                datas['questions'][pageindex]['question'],
+               
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
@@ -111,7 +126,32 @@ class Home_Page extends StatelessWidget {
             child: Container(
               height: 250,
               width: 350,
-              child: Options_Page(),
+              child: ListView.separated(
+                itemCount: 4,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: ListTile(
+                      leading: Text(
+                        '${Options[index]}',
+                        style: TextStyle(fontSize: 19, color: Colors.white),
+                      ),
+                      title: Text(
+                        datas['questions'][pageindex]['answers'][index],
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 19,
+                            color: Colors.white),
+                      ),
+                    ),
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) =>
+                    const Divider(),
+              ),
             ),
           ),
           SizedBox(
@@ -125,12 +165,6 @@ class Home_Page extends StatelessWidget {
                   height: 60,
                   width: 100,
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(9),
-                        topRight: Radius.circular(9),
-                        bottomLeft: Radius.circular(9),
-                        bottomRight: Radius.circular(9)),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey,
@@ -139,12 +173,31 @@ class Home_Page extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: TextButton.icon(
-                      onPressed: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) => const SplashScreen())),
-                      icon: Icon(Icons.arrow_forward),
-                      label: Text('Next')),
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(9))),
+                      onPressed: (() {
+                        setState(() {
+                          pageindex < 10
+                              ? pageindex++
+                              : Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Result_page()));
+                        });
+                      }),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Next',
+                            style: TextStyle(
+                                color: Colors.blue,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Icon(Icons.arrow_forward, color: Colors.blue)
+                        ],
+                      )),
                 ),
               ),
             ],

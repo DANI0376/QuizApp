@@ -38,6 +38,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   splash_screen_view: ^3.0.0
   google_fonts: ^3.0.1
+  percent_indicator: ^4.2.2
+  lottie: ^2.0.0
 
 
 dev_dependencies:

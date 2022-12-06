@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:full_function_game/answercheck.dart';
 import 'package:full_function_game/q&a.dart';
 import 'package:full_function_game/result_page.dart';
+
+late bool match;
+int mark = 0;
 
 class Home_Page extends StatefulWidget {
   Home_Page({super.key});
@@ -19,6 +23,7 @@ class _Home_PageState extends State<Home_Page> {
     'Amazon Alexa'
   ];
   int pageindex = 1;
+  int buttonindex = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +84,6 @@ class _Home_PageState extends State<Home_Page> {
             child: Container(
               child: Text(
                 datas['questions'][pageindex]['question'],
-               
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
@@ -126,31 +130,40 @@ class _Home_PageState extends State<Home_Page> {
             child: Container(
               height: 250,
               width: 350,
-              child: ListView.separated(
+              child: ListView.builder(
                 itemCount: 4,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
+                    margin: EdgeInsets.all(5),
                     height: 50,
                     decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color:
+                            index == buttonindex ? Colors.green : Colors.blue,
                         borderRadius: BorderRadius.all(Radius.circular(10))),
-                    child: ListTile(
-                      leading: Text(
-                        '${Options[index]}',
-                        style: TextStyle(fontSize: 19, color: Colors.white),
-                      ),
-                      title: Text(
-                        datas['questions'][pageindex]['answers'][index],
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 19,
-                            color: Colors.white),
+                    child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          answercheck(index, pageindex);
+                          buttonindex = index;
+                          print(buttonindex);
+                        });
+                      },
+                      child: ListTile(
+                        leading: Text(
+                          '${Options[index]}',
+                          style: TextStyle(fontSize: 19, color: Colors.white),
+                        ),
+                        title: Text(
+                          datas['questions'][pageindex]['answers'][index],
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 19,
+                              color: Colors.white),
+                        ),
                       ),
                     ),
                   );
                 },
-                separatorBuilder: (BuildContext context, int index) =>
-                    const Divider(),
               ),
             ),
           ),
@@ -179,11 +192,17 @@ class _Home_PageState extends State<Home_Page> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(9))),
                       onPressed: (() {
+                        if (match) {
+                          mark++;
+                        }
                         setState(() {
+                          buttonindex = -1;
                           pageindex < 10
                               ? pageindex++
                               : Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => Result_page()));
+                          match = false;
+                          print('match=$mark');
                         });
                       }),
                       child: Row(

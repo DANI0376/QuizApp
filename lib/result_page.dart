@@ -49,7 +49,7 @@ class Result_page extends StatelessWidget {
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       progressColor: win ? Colors.green : Colors.red,
-                      backgroundColor: Colors.white,
+                      backgroundColor: Colors.grey,
                       circularStrokeCap: CircularStrokeCap.round,
                     ),
                   ),
@@ -57,7 +57,8 @@ class Result_page extends StatelessWidget {
                     height: 50,
                     width: 200,
                     child: FloatingActionButton.extended(
-                        backgroundColor: win ? Colors.lightGreen : Colors.red,
+                        backgroundColor:
+                            win ? Colors.lightGreen : Color.fromARGB(255, 247, 150, 4),
                         onPressed: (() {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(builder: (ctx) => Home_Page()));

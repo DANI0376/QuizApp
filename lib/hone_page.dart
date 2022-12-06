@@ -3,7 +3,6 @@ import 'package:full_function_game/answercheck.dart';
 import 'package:full_function_game/q&a.dart';
 import 'package:full_function_game/result_page.dart';
 
-
 late bool match;
 int mark = 0;
 
@@ -150,16 +149,22 @@ class _Home_PageState extends State<Home_Page> {
                         });
                       },
                       child: ListTile(
-                        leading: Text(
-                          '${Options[index]}',
-                          style: TextStyle(fontSize: 19, color: Colors.white),
+                        leading: Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: Text(
+                            '${Options[index]}',
+                            style: TextStyle(fontSize: 19, color: Colors.white),
+                          ),
                         ),
-                        title: Text(
-                          datas['questions'][pageindex]['answers'][index],
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 19,
-                              color: Colors.white),
+                        title: Padding(
+                          padding: const EdgeInsets.only(bottom: 16, left: 20),
+                          child: Text(
+                            datas['questions'][pageindex]['answers'][index],
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 19,
+                                color: Colors.white),
+                          ),
                         ),
                       ),
                     ),

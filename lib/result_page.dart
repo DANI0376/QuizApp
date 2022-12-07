@@ -28,9 +28,14 @@ class Result_page extends StatelessWidget {
         body: Stack(
           children: [
             win
-                ? LottieBuilder.network(
-                    'https://assets7.lottiefiles.com/packages/lf20_ahrbr631.json')
-                : SizedBox(),
+                ? Center(
+                    child: LottieBuilder.network(
+                        'https://assets1.lottiefiles.com/packages/lf20_zmzsqn3b.json'),
+                  )
+                : Center(
+                    child: LottieBuilder.network(
+                        "https://assets9.lottiefiles.com/private_files/lf30_GjhcdO.json"),
+                  ),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -49,7 +54,7 @@ class Result_page extends StatelessWidget {
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       progressColor: win ? Colors.green : Colors.red,
-                      backgroundColor: Colors.grey,
+                      backgroundColor: Colors.white,
                       circularStrokeCap: CircularStrokeCap.round,
                     ),
                   ),
@@ -57,9 +62,11 @@ class Result_page extends StatelessWidget {
                     height: 50,
                     width: 200,
                     child: FloatingActionButton.extended(
-                        backgroundColor:
-                            win ? Colors.lightGreen : Color.fromARGB(255, 247, 150, 4),
+                        backgroundColor: win
+                            ? Colors.lightGreen
+                            : Color.fromARGB(255, 247, 150, 4),
                         onPressed: (() {
+                          mark = 0;
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(builder: (ctx) => Home_Page()));
                         }),
@@ -75,12 +82,13 @@ class Result_page extends StatelessWidget {
                   ),
                   win
                       ? Text(
-                          '\t\t\t\t\t\t\tcongratilation\nYou Passed The exam ',
+                          '\t\t\t\t\t\t\tcongratulation\nYou Passed The exam ',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         )
                       : TextButton(
                           onPressed: (() {
+                            mark = 0;
                             Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                     builder: (ctx) => Home_Page()));

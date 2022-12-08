@@ -32,7 +32,6 @@ class _Home_PageState extends State<Home_Page> {
         children: [
           Row(
             children: [
-              // Icon(Icons.arrow_back),
               SizedBox(
                 width: 200,
               ),
@@ -65,7 +64,7 @@ class _Home_PageState extends State<Home_Page> {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey,
-                        offset: Offset(0.0, 1.0), //(x,y)
+                        offset: Offset(0.0, 1.0),
                         blurRadius: 6.0,
                       ),
                     ],

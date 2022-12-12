@@ -16,14 +16,10 @@ class Home_Page extends StatefulWidget {
 class _Home_PageState extends State<Home_Page> {
   final List<String> Options = <String>['A.', 'B.', 'C.', 'D.'];
 
-  final List<String> Options_1 = <String>[
-    'Drone',
-    '3D Printer',
-    'VR Box',
-    'Amazon Alexa'
-  ];
   int pageindex = 1;
+
   int buttonindex = -1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

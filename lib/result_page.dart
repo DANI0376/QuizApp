@@ -3,13 +3,14 @@ import 'package:full_function_game/hone_page.dart';
 import 'package:full_function_game/provider_page.dart';
 import 'package:lottie/lottie.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:provider/provider.dart';
 
 class ResultPage extends StatelessWidget {
   final int totalmark;
   ResultPage(this.totalmark);
   @override
   Widget build(BuildContext context) {
-    bool win = mark >= 5;
+    bool win = context.read<ProviderPage>().mark >= 5;
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -48,9 +49,9 @@ class ResultPage extends StatelessWidget {
                       animationDuration: 1000,
                       radius: 85,
                       lineWidth: 20,
-                      percent: mark / 10,
+                      percent: context.read<ProviderPage>().mark / 10,
                       center: Text(
-                        "${mark}/10",
+                        "${context.read<ProviderPage>().mark}/10",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
@@ -67,7 +68,7 @@ class ResultPage extends StatelessWidget {
                             ? Colors.lightGreen
                             : Color.fromARGB(255, 247, 150, 4),
                         onPressed: (() {
-                          mark = 0;
+                          context.read<ProviderPage>().mark = 0;
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(builder: (ctx) => Home_Page()));
                         }),
@@ -83,13 +84,13 @@ class ResultPage extends StatelessWidget {
                   ),
                   win
                       ? Text(
-                          '\t\t\t\t\t\t\tcongratulation\nYou Passed The exam ',
+                          '\t\t\t\t\t\t\tcongratulation\nYou passed the exam ',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         )
                       : TextButton(
                           onPressed: (() {
-                            mark = 0;
+                           context.read<ProviderPage>().mark= 0;
                             Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                     builder: (ctx) => Home_Page()));

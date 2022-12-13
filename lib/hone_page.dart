@@ -4,13 +4,12 @@ import 'package:full_function_game/q&a.dart';
 import 'package:full_function_game/result_page.dart';
 import 'package:provider/provider.dart';
 
-
-
 class Home_Page extends StatelessWidget {
   Home_Page({super.key});
 
   final List<String> Options = <String>['A.', 'B.', 'C.', 'D.'];
-
+  // bool match = false;
+  // int mark = 0;
   int pageindex = 1;
   int buttonindex = -1;
 
@@ -134,6 +133,7 @@ class Home_Page extends StatelessWidget {
                       child: TextButton(
                         onPressed: () {
                           buttonindex = index;
+
                           pro.answercheck(buttonindex, pageindex, index);
                         },
                         child: ListTile(
@@ -188,16 +188,16 @@ class Home_Page extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(9))),
                         onPressed: (() {
-                         
                           pro.pageChange();
                           pageindex < 10
                               ? pageindex++
                               : Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => ResultPage(mark)));
+                                  builder: (context) => ResultPage(
+                                      context.read<ProviderPage>().mark)));
                           buttonindex = -1;
-                          match = false;
-                          print('totalmark=$mark');
-                          
+                          // match = false;
+                          // print('totalmark'{context.read<ProviderPage>().mark});
+                          print('totalmark'+context.read<ProviderPage>().mark.toString());
                         }),
                         child: Row(
                           children: [

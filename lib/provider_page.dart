@@ -1,18 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:full_function_game/hone_page.dart';
 import 'package:full_function_game/q&a.dart';
 
-late bool match;
-int mark = 0;
-
 class ProviderPage extends ChangeNotifier {
-  void pageChange() {
-    if (match) {
-      mark++;
-    }
-    notifyListeners();
-  }
-
+  bool match = false;
+  int mark = 0;
   void answercheck(int buttonindex, pageindex, int index) {
     buttonindex = index;
     buttonindex == datas['questions'][pageindex]['correctIndex']
@@ -20,6 +11,14 @@ class ProviderPage extends ChangeNotifier {
         : match = false;
     print(match);
     print(pageindex);
+    notifyListeners();
+  }
+
+  void pageChange({bool reset = false}) {
+    if (match) {
+      mark++;
+      match = false;
+    }
     notifyListeners();
   }
 }

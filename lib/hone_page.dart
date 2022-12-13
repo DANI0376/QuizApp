@@ -184,6 +184,8 @@ class Home_Page extends StatelessWidget {
                     ),
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                            shadowColor: Colors.black,
+                            elevation: 10,
                             backgroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(9))),
@@ -197,7 +199,8 @@ class Home_Page extends StatelessWidget {
                           buttonindex = -1;
                           // match = false;
                           // print('totalmark'{context.read<ProviderPage>().mark});
-                          print('totalmark'+context.read<ProviderPage>().mark.toString());
+                          print('totalmark' +
+                              context.read<ProviderPage>().mark.toString());
                         }),
                         child: Row(
                           children: [

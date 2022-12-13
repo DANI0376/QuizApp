@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:full_function_game/hone_page.dart';
 import 'package:full_function_game/main.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 

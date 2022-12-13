@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:full_function_game/hone_page.dart';
+import 'package:full_function_game/provider_page.dart';
 import 'package:lottie/lottie.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-class Result_page extends StatelessWidget {
+class ResultPage extends StatelessWidget {
   final int totalmark;
-  Result_page(this.totalmark);
+  ResultPage(this.totalmark);
   @override
   Widget build(BuildContext context) {
     bool win = mark >= 5;
@@ -44,7 +45,7 @@ class Result_page extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 400),
                     child: CircularPercentIndicator(
                       animation: true,
-                      // animationDuration: 1000,
+                      animationDuration: 1000,
                       radius: 85,
                       lineWidth: 20,
                       percent: mark / 10,

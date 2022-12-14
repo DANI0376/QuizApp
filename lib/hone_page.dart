@@ -8,8 +8,6 @@ class Home_Page extends StatelessWidget {
   Home_Page({super.key});
 
   final List<String> Options = <String>['A.', 'B.', 'C.', 'D.'];
-  // bool match = false;
-  // int mark = 0;
   int pageindex = 1;
   int buttonindex = -1;
 
@@ -197,8 +195,6 @@ class Home_Page extends StatelessWidget {
                                   builder: (context) => ResultPage(
                                       context.read<ProviderPage>().mark)));
                           buttonindex = -1;
-                          // match = false;
-                          // print('totalmark'{context.read<ProviderPage>().mark});
                           print('totalmark' +
                               context.read<ProviderPage>().mark.toString());
                         }),

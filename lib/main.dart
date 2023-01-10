@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:full_function_game/hone_page.dart';
 import 'package:full_function_game/provider_page.dart';
-import 'package:full_function_game/splash_screen.dart';
+// import 'package:full_function_game/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: SplashScreen(),
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

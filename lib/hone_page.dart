@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:full_function_game/fetchdata.dart';
 import 'package:full_function_game/provider_page.dart';
-import 'package:full_function_game/q&a.dart';
+// import 'package:full_function_game/q&a.dart';
 import 'package:full_function_game/result_page.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +11,8 @@ class Home_Page extends StatelessWidget {
   final List<String> Options = <String>['A.', 'B.', 'C.', 'D.'];
   int pageindex = 1;
   int buttonindex = -1;
+  int indexfornextquestion = 0;
+  int indexfornextanswer = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -70,11 +73,22 @@ class Home_Page extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 40, top: 40),
               child: Container(
-                child: Text(
-                  datas['questions'][pageindex]['question'],
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                ),
-              ),
+                  child: FutureBuilder(
+                future: fetchQuestion(),
+                builder: ((context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Text(
+                      '${snapshot.data![0].questions[indexfornextquestion].question}',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17,
+                          color: Colors.black),
+                    );
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                }),
+              )),
             ),
             SizedBox(
               height: 60,
@@ -144,16 +158,32 @@ class Home_Page extends StatelessWidget {
                             ),
                           ),
                           title: Padding(
-                            padding:
-                                const EdgeInsets.only(bottom: 16, left: 20),
-                            child: Text(
-                              datas['questions'][pageindex]['answers'][index],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 19,
-                                  color: Colors.white),
-                            ),
-                          ),
+                              padding:
+                                  const EdgeInsets.only(bottom: 16, left: 20),
+                              child: FutureBuilder(
+                                future: fetchQuestion(),
+                                builder: ((context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    return Text(
+                                      '${snapshot.data![0].questions[indexfornextquestion].answers[index]}',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 19,
+                                          color: Colors.white),
+                                    );
+                                  } else {
+                                    return const CircularProgressIndicator();
+                                  }
+                                }),
+                              )
+                              // child: Text(
+                              //   datas['questions'][pageindex]['answers'][index],
+                              //   style: TextStyle(
+                              //       fontWeight: FontWeight.bold,
+                              //       fontSize: 19,
+                              //       color: Colors.white),
+                              // ),
+                              ),
                         ),
                       ),
                     );
@@ -195,6 +225,7 @@ class Home_Page extends StatelessWidget {
                                   builder: (context) => ResultPage(
                                       context.read<ProviderPage>().mark)));
                           buttonindex = -1;
+                          indexfornextquestion++;
                           print('totalmark' +
                               context.read<ProviderPage>().mark.toString());
                         }),
